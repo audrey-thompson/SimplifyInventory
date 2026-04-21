@@ -290,25 +290,26 @@
           document.getElementById("md-body").innerHTML =
             `<p class="error">Could not load content: ${err.message}</p>`;
         });
-      
+
       const nav = document.getElementById("page-nav");
       const prev = idx > 0 ? PAGES[idx - 1] : null;
       const next = idx < PAGES.length - 1 ? PAGES[idx + 1] : null;
-      
+
       nav.innerHTML = `
         ${prev
           ? `<a class="prev" href="?p=${idx}">
                <span class="arrow">←</span>
-               <span>Previous</span>
+               <span><span class="nav-label">Previous</span><span class="nav-title">${prev.title}</span></span>
              </a>`
           : `<span></span>`}
         ${next
           ? `<a class="next" href="?p=${idx + 2}">
-               <span>Next</span>
+               <span><span class="nav-label">Next</span><span class="nav-title">${next.title}</span></span>
                <span class="arrow">→</span>
              </a>`
           : `<span></span>`}
       `;
+    }
   </script>
 
 </body>
