@@ -1,52 +1,12 @@
-UI/App Design
-    - replace button words with symbols
-    - clean up look of items on inventory page
-    - inventory page: inner left, far left: home/updates (ex: you're low on this, this is
-        being delivered)?
-    - remove log out button from inventory page
-    - fix look of add new item
-    - hide delete item option (edit button)
-
-Algorithms & Data Structure
-    - sorting criteria for inventory (expiration, quantity, A-Z, recent)
-    - recommendation system for inventory (what's low)
-    - simple duplicate check for create new item
-    - search item (name, partial matching)
-
-    - Future
-        - only save password hashes
-        - trend-based recommendation system for inventory
-        - encryption in transit
-        - forgot password option
-        - create new item enhanced duplicate check
-        - merge duplicate items option? keep one surviving item
-        - quick search for free usernames
-        - Inventory categories & organization?
-
-Database
-    - mock rfid tag "ordering" system
-
-    - Future
-        - encryption at rest
-        - added account management functionality
-            - change password, username, email
-            - MFA
-
-CURRENT
- - Delete up or down to how many exist for inventory counts
- - Way for user to assign tag to item (add to create item page)
- - Update create user UI to include extra information (email)
-
-
-Module 3 Actually Done:
+Module 3 Done:
  - Made separate create account page
  - Added bottom menu
  - Added account settings page
 
-Module 4 Actually Done:
+Module 4 Done:
 - Rearranged menu, adding home and shop pages (home, inventory, shop, settings)
 
-Module 4 Revisited Actually Done:
+Module 4 Revisited Done:
 //// Password Hashing ////
 - added .trim() to remove whitespace to front and end of string in username for account creation
 - added check for blank username or password before account creation
@@ -59,7 +19,11 @@ Module 4 Revisited Actually Done:
     password the user enters instead of the cleartext password
 - add .trim() to login username
 
-Module 5 Databases Actually Done:
+//// Sort ////
+
+//// Search ////
+
+Module 5 Databases Done:
  - Updated User table to require more than just Username and Password
  - created dao folder(instead of just databse stuff in loginhelpers)
    (InvntoryItemDao, ItemTypeDao, RfidDeviceDao, RfidTagDao, UserDao)
@@ -69,4 +33,9 @@ Module 5 Databases Actually Done:
  - Removed sort functionality
  - Change plan, only items with RFID tags are tracked and the number is just a reflection of the
     number of items being tracked, unchangeable by the user
+
+Final Preparation Done:
+ - UI, UI, UI
+ - Remove up and down menus 
+ - Change bottom navigation so it isn't rewritten on every page 
 
