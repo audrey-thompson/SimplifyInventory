@@ -290,11 +290,11 @@
           document.getElementById("md-body").innerHTML =
             `<p class="error">Could not load content: ${err.message}</p>`;
         });
-
+      
       const nav = document.getElementById("page-nav");
       const prev = idx > 0 ? PAGES[idx - 1] : null;
       const next = idx < PAGES.length - 1 ? PAGES[idx + 1] : null;
-
+      
       nav.innerHTML = `
         ${prev
           ? `<a class="prev" href="?p=${idx}">
@@ -309,7 +309,6 @@
              </a>`
           : `<span></span>`}
       `;
-    }
   </script>
 
 </body>
