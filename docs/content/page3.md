@@ -9,7 +9,7 @@ In this enhancement, I built out the rest of the app including all pages and UI 
 
 **Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals:** The use of the menu as its own element to be added in each page rather than written multiple times was good design and helps to keep the code maintainable.
 Rather than including this for each page: 
-`<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+```<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -56,9 +56,9 @@ Rather than including this for each page:
         android:backgroundTint="@color/purple_dark"
         android:textColor="@android:color/white"/>
 </LinearLayout>
-`
+```
 I only had to write that once and include this on each page: 
-`    <include
+```    <include
         android:id="@+id/bottom_nav"
         layout="@layout/bottom_nav" />
-`
+```
