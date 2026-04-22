@@ -1,6 +1,6 @@
-#H1 Welcome!
+# Welcome!
 
-#H2 Professional Self-Assessment 
+## Professional Self-Assessment 
 
 The completion of the Bachelors of Computer Science program and development of this ePortfolio has helped me to showcase my strengths, shape my professional goals and values, and prepare to enter the field of computer science. Throughout the program, I have completed various projects exploring different areas and skillsets in computer science, each of which serve as examples of my abilities. A few projects of interest are noted here: 
 
