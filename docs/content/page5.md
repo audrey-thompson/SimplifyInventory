@@ -16,17 +16,7 @@ The database design is very clear because of consistent naming convention and lo
 
 **Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices:**
 The database improvements show good problem-solving by organizing data in a way that is efficient and easy to use. For example, using queries to calculate totals (like item quantities) makes the app faster instead of doing that work in the code. I also balanced trade-offs, like keeping the database organized while making sure queries are still simple enough to run quickly. Adding indexes helps speed things up, even though it slightly increases storage use.
-Here is a snippet of the query for get item sorted by quantity:
-```    @Query("""
-      SELECT it.* FROM item_types it
-      LEFT JOIN (SELECT itemTypeId, SUM(quantity) as total
-                 FROM inventory_items WHERE userId = :userId GROUP BY itemTypeId) inv
-      ON it.id = inv.itemTypeId
-      WHERE it.userId = :userId
-      ORDER BY inv.total DESC
-  """)
-    suspend fun getItemTypesSortedByQuantity(userId: Int): List<ItemType>
-```
+
 
 **Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals:**
 The database uses relationships and constraints to keep data accurate. Using Room helped connect the database to the app more easily. The design also leaves room for future features, like RFID tracking or recommendations, showing that the system can grow over time.
