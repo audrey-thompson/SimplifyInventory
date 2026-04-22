@@ -3,6 +3,8 @@
 
 **Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices**
 The sort feature allows for both ascending and descending sort by quantity, most recently added, and name (alphabetically). I handled this at the database level by adding more daos for getting item count, getting items sorted by quantity, and getting items sorted by recently added. SQL comes with these sorting features and is faster and easier than trying to load the data first and then sort with Kotlin. 
+
+Here is the dao for getting items sorted by quantity:
 ```    @Query("""
       SELECT it.* FROM item_types it
       LEFT JOIN (SELECT itemTypeId, SUM(quantity) as total
