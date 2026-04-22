@@ -8,7 +8,8 @@ Here is a snippet of how the get count query works for item type:
     SELECT SUM(quantity) 
     FROM inventory_items 
     WHERE itemTypeId = :itemTypeId AND userId = :userId
-    """)```
+    """)
+```
 
 **Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts:**
 The database design is very clear because of consistent naming convention and logical organization. The inclusion of fields like createdAt, updatedAt, notes, and comments supports traceability and reporting, which improves communication. 
@@ -24,7 +25,8 @@ Here is a snippet of the query for get item sorted by quantity:
       WHERE it.userId = :userId
       ORDER BY inv.total DESC
   """)
-    suspend fun getItemTypesSortedByQuantity(userId: Int): List<ItemType>```
+    suspend fun getItemTypesSortedByQuantity(userId: Int): List<ItemType>
+```
 
 **Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals:**
 The database uses relationships and constraints to keep data accurate. Using Room helped connect the database to the app more easily. The design also leaves room for future features, like RFID tracking or recommendations, showing that the system can grow over time.
@@ -59,4 +61,5 @@ data class InventoryItem(
     val notes: String? = null,
     val createdAt: Long = System.currentTimeMillis(), // for ML recommendations
     val updatedAt: Long = System.currentTimeMillis()  // for ML recommendations
-)```
+)
+```
