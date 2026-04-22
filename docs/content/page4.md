@@ -3,6 +3,16 @@
 
 **Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices**
 The sort feature allows for both ascending and descending sort by quantity, most recently added, and name (alphabetically). I handled this at the database level by adding more daos for getting item count, getting items sorted by quantity, and getting items sorted by recently added. SQL comes with these sorting features and is faster and easier than trying to load the data first and then sort with Kotlin. 
+```    @Query("""
+      SELECT it.* FROM item_types it
+      LEFT JOIN (SELECT itemTypeId, SUM(quantity) as total
+                 FROM inventory_items WHERE userId = :userId GROUP BY itemTypeId) inv
+      ON it.id = inv.itemTypeId
+      WHERE it.userId = :userId
+      ORDER BY inv.total DESC
+  """)
+    suspend fun getItemTypesSortedByQuantity(userId: Int): List<ItemType>
+```
 
 The search feature allows the user to type their search into the search bar and filter for items or item types that match the search term. I did this by adding the search bar and edit text handlers that update the items being displayed as the user types and filter the list down based on items that match what has been entered so far. This worked by fuzzy filtering, where it checks if the substring exists in the names of the item types. I achieved the course outcome  with this addition by using a string-matching algorithm for filtering, choosing to use database operations to optimize filtering by avoiding unnecessary in-memory operations, balancing the trade-off of performance and simplicity with search (small app with few items per user: simple search), and balancing security and efficiency (password hashing requires extra computation, but is necessary). The app now has more functional, useful features, creating a better and more secure experience for the user. 
 
