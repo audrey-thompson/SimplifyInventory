@@ -18,6 +18,52 @@ Here is the dao for getting items sorted by quantity:
 
 The search feature allows the user to type their search into the search bar and filter for items or item types that match the search term. I did this by adding the search bar and edit text handlers that update the items being displayed as the user types and filter the list down based on items that match what has been entered so far. This worked by fuzzy filtering, where it checks if the substring exists in the names of the item types. I achieved the course outcome  with this addition by using a string-matching algorithm for filtering, choosing to use database operations to optimize filtering by avoiding unnecessary in-memory operations, balancing the trade-off of performance and simplicity with search (small app with few items per user: simple search), and balancing security and efficiency (password hashing requires extra computation, but is necessary). The app now has more functional, useful features, creating a better and more secure experience for the user. 
 
+Here is the search snippet:
+```
+        fun filter(query: String) {
+            items = if (query.isBlank()) {
+                allItems
+            } else {
+                allItems.filter { it.name.contains(query, ignoreCase = true) }
+            }
+            notifyDataSetChanged()
+        }
+```
+
 **Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals:** The password hashing uses BCrypt on creation of an account so that the user’s password is never stored in cleartext. This was done by changing the create account feature to store a hashed password instead of a cleartext password as well as changing hthe loging feature to compare the hashed version of the given password to the hashed password saved in the database. 
+
+Here is the make account function using BCrypt:
+```    fun MakeAccount(view: View) {
+        val username = findViewById<TextView>(R.id.username).text.toString().trim()
+        val password = findViewById<TextView>(R.id.password).text.toString()
+        val email = "testemail@test.com"
+
+        if(username.isBlank() || password.isBlank()) {
+            return
+        }
+
+        val passwordHash = BCrypt.hashpw(password, BCrypt.gensalt())
+        val user = User(username = username, passwordHash = passwordHash, email = email)
+
+        lifecycleScope.launch {
+            val db = AppDatabase.getDatabase(applicationContext)
+            db.userDao().insertUser(user)
+            finish()
+        }
+```
+And here is the login function using BCrypt:
+```    fun Login(view: View) {
+        val username = findViewById<EditText>(R.id.username).text.toString().trim()
+        val password = findViewById<EditText>(R.id.password).text.toString()
+
+        val success = LoginHelpers.logIn(this, username, password)
+
+        if (!success) {
+            findViewById<TextView>(R.id.result).text = "Login Failed!"
+        } else {
+            finish()
+        }
+    }
+```                  
 
 **Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources:** The hashes were also salted to improve security by preventing rainbow table attacks, making sure users with the same passwords have different password hashes, and slowing brute force attacks. The addition of this feature achieved this class outcome by improving the confidentiality of the user’s passwords and account data as well as the integrity of the account and its associated data. 
